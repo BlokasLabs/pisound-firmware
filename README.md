@@ -2,15 +2,13 @@
 This repository contains firmware for pisound boards.
 
 ## Prerequisities
-Make sure you have installed the pisound software as described at http://wiki.blokas.io/index.php/pisound#Linux_Driver.
 
-Also, make sure that you have our customized 'avrdude' installed, https://github.com/BlokasLabs/avrdude. Running:
+Make sure you have the following prerequisities installed:
 
-```
-avrdude --version
-```
-
-in a terminal should display '6.1-svn-20130917-blokas' near the bottom.
+1. pisound software, http://wiki.blokas.io/index.php/pisound#Linux_Driver.
+ * Running ```pisound-btn --version``` should output its version.
+2. customized avrdude
+ * Running ```avrdude --version``` should display ```6.1-svn-20130917-blokas``` near the bottom.
 
 ## Instructions
 Once you have pisound software and avrdude installed, just clone the repository and run flash.sh:
