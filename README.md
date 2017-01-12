@@ -3,7 +3,7 @@ This repository contains firmware for pisound boards.
 
 ## Prerequisities
 
-Make sure you have the following prerequisities installed:
+Make sure you have the following prerequisities installed and up-to-date:
 
 1. pisound software, http://wiki.blokas.io/index.php/pisound#Linux_Driver.
  * Running ```pisound-btn --version``` should output its version.
