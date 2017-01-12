@@ -10,7 +10,7 @@ Make sure you have the following prerequisities installed:
 2. customized avrdude
  * Running ```avrdude --version``` should display ```6.1-svn-20130917-blokas``` near the bottom.
 
-<b>Additionally pisound must not be selected as the default card for the flashing to succeed!</b>
+<b>Additionally pisound must not be selected as the default card for the flashing to succeed!</b> Otherwise, snd_soc_pisound kernel module will not be able to unload, as it will still be in use!
 
 ## Instructions
 Once you have pisound software and avrdude installed, just clone the repository and run flash.sh:
