@@ -7,7 +7,7 @@ Make sure you have the following prerequisities installed and up-to-date:
 
 1. pisound software, http://wiki.blokas.io/index.php/pisound#Linux_Driver.
  * Running ```pisound-btn --version``` should output its version.
-2. customized avrdude
+2. customized avrdude, https://github.com/BlokasLabs/avrdude
  * Running ```avrdude --version``` should display ```6.1-svn-20130917-blokas``` near the bottom.
 
 <b>Additionally pisound must not be selected as the default card for the flashing to succeed!</b> Otherwise, snd_soc_pisound kernel module will not be able to unload, as it will still be in use!
