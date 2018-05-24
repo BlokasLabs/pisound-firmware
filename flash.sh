@@ -9,9 +9,12 @@ try_unload() {
 }
 
 set +e
+sudo systemctl stop pisound-btn
+sudo systemctl stop pisound-ctl
 pulseaudio -k > /dev/null 2>&1 || true
 try_unload
 sudo avrdude -c linuxspi -p t841 -b 150000 -P /dev/spidev0.1 -U flash:w:pisound.hex
 sudo modprobe snd_soc_pisound
 sleep 1
-sh -c "pisound-btn >> ~/.pisound.log" &
+sudo systemctl start pisound-btn
+sudo systemctl start pisound-ctl
