@@ -9,20 +9,25 @@ try_unload() {
 }
 
 set +e
-sudo systemctl stop pisound-btn
-sudo systemctl stop pisound-ctl
-sudo systemctl stop alsa-state || true
+sudo systemctl stop pisound-btn 2> /dev/null
+sudo systemctl stop pisound-ctl 2> /dev/null
+sudo systemctl stop alsa-state 2> /dev/null || true
+aconnect -x
 pulseaudio -k > /dev/null 2>&1 || true
 try_unload
 # Pull SS pin low.
-sudo sh -c "echo 8 > /sys/class/gpio/export"
+if [ ! -e /sys/class/gpio/gpio8 ]; then
+	sudo sh -c "echo 8 > /sys/class/gpio/export"
+fi
 sudo sh -c "echo out > /sys/class/gpio/gpio8/direction"
 sudo sh -c "echo 0 > /sys/class/gpio/gpio8/value"
 sudo avrdude -c linuxspi -p t841 -b 150000 -P /dev/spidev0.1 -U flash:w:pisound.hex
 # Restore SS pin.
-sudo sh -c "echo 8 > /sys/class/gpio/unexport"
+sudo sh -c "echo 1 > /sys/class/gpio/gpio8/value"
 sudo modprobe snd_soc_pisound
 sleep 1
 sudo systemctl start alsa-state || true
-sudo systemctl start pisound-btn
-sudo systemctl start pisound-ctl
+sudo systemctl start pisound-btn 2> /dev/null
+sudo systemctl start pisound-ctl 2> /dev/null
+echo
+echo "Please reboot your system now (sudo reboot). Thank you!"
